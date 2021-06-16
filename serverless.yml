@@ -1,0 +1,29 @@
+service: directus-serverless-template
+frameworkVersion: '2'
+
+plugins:
+  - serverless-express
+  - serverless-apigw-binary
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  lambdaHashingVersion: 20201221
+  memorySize: 192
+  timeout: 30
+  stage: production
+  region: eu-west-1
+
+custom:
+  apigwBinary:
+    types:
+      - "*/*"
+
+functions:
+  app:
+    handler: app.lambda
+    events: 
+      - http:
+          method: ANY   
+          path: /{proxy+}
