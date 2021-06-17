@@ -22,7 +22,7 @@ custom:
 
 functions:
   app:
-    handler: app.lambda
+    handler: handler.handler
     events: 
       - http:
           method: ANY   
